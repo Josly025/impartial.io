@@ -10,15 +10,12 @@ import CardActions from "@material-ui/core/CardActions";
 import Collapse from "@material-ui/core/Collapse";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import { red } from "@material-ui/core/colors";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import "../css/news.css";
 import Button from "@material-ui/core/Button";
-
-// import Paper from "@material-ui/core/Paper";
-// Start of NEWS
+import Divider from "@material-ui/core/Divider";
 
 const useStyles = makeStyles((theme) => ({
   rootGrid: {
@@ -47,8 +44,9 @@ const useStyles = makeStyles((theme) => ({
   expandOpen: {
     transform: "rotate(180deg)",
   },
-  avatar: {
-    backgroundColor: red[500],
+  btn: {
+    color: "blacks",
+    backgroundColor: "#ff9800",
   },
 }));
 
@@ -65,14 +63,14 @@ const News = () => {
   useEffect(() => {
     async function getNews() {
       const res = await Axios.get(
-        `https://newsapi.org/v2/top-headlines?country=us&apiKey=f1136103fe784cce8ea8d5f45808b038`
+        `https://newsapi.org/v2/top-headlines?country=us&apiKey=6512f11dc59b448c87ce0e727960f3c9`
       );
       setNews(res.data.articles);
       console.log(news);
       setLoading(false);
     }
     getNews();
-  });
+  }, []);
 
   return (
     <>
@@ -113,13 +111,14 @@ const News = () => {
                 </CardContent>
                 <CardActions disableSpacing>
                   <IconButton aria-label="share">
-                    <Link
-                      component="button"
-                      variant="body2"
-                      target="_blank"
-                      to={article.url}
-                    >
-                      <Button size="medium" variant="contained" color="primary">
+                    <Link component="button" variant="body2">
+                      <Button
+                        size="medium"
+                        href={article.url}
+                        variant="contained"
+                        className={classes.btn}
+                      >
+                        <Divider />
                         {article.source.name}
                       </Button>
                     </Link>
@@ -137,7 +136,6 @@ const News = () => {
                 </CardActions>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                   <CardContent>
-                    <Typography paragraph>{article.title}</Typography>
                     <Typography paragraph>{article.author}</Typography>
                     <Typography paragraph>{article.content}</Typography>
                   </CardContent>
