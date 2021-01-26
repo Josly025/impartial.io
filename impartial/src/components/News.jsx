@@ -79,19 +79,20 @@ const News = () => {
   }, []);
 
   // //handle the input on change
-
-  // useEffect(() => {
-  //   async function searchNews() {
-  //     console.log(search);
-  //     const res = await Axios.get(
-  //       `https://newsapi.org/v2/everything?q=${search}&apiKey=6512f11dc59b448c87ce0e727960f3c9`
-  //     );
-  //     setSearchData(res.data.articles);
-  //     console.log(searchData);
-  //     setLoadingTwo(false);
-  //   }
-  //   searchNews();
-  // }, []);
+  function handleSearch() {
+    searchNews();
+    async function searchNews() {
+      console.log(search);
+      const res = await Axios.get(
+        `https://newsapi.org/v2/everything?q=${search}&apiKey=6512f11dc59b448c87ce0e727960f3c9`
+      );
+      setSearchData(res.data.articles);
+      console.log(searchData);
+      setLoadingTwo(false);
+      setLoading(true);
+    }
+    setSearch("");
+  }
 
   return (
     <>
@@ -105,14 +106,84 @@ const News = () => {
         spacing={4}
       >
         <Grid item xs={12}>
-          <Input defaultValue="Search By Topic" className="input" />
-          <Button variant="outlined">Search</Button>
+          <Input
+            placeholder="Search By Topic"
+            className="input"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <Button variant="outlined" type="submit" onClick={handleSearch}>
+            Search
+          </Button>
         </Grid>
 
         {loading ? (
-          <h1>Loading</h1>
+          <> </>
         ) : (
           news.map((article) => (
+            <Grid item xs={12} sm={6}>
+              {/* <Paper className={classes.paper}> */}
+              <Card className={classes.root}>
+                <CardHeader
+                  title={article.title}
+                  subheader={new Date(article.publishedAt).toLocaleString()}
+                />
+                <CardMedia
+                  className={classes.media}
+                  //image src
+                  image={article.urlToImage}
+                />
+                <CardContent>
+                  <Typography
+                    className="card-content"
+                    variant="body2"
+                    color="textPrimary"
+                    component="p"
+                  >
+                    {article.description}
+                  </Typography>
+                </CardContent>
+                <CardActions disableSpacing>
+                  <IconButton aria-label="share">
+                    <Link component="button" variant="body2">
+                      <Button
+                        size="medium"
+                        href={article.url}
+                        variant="contained"
+                        className={classes.btn}
+                      >
+                        <Divider />
+                        {article.source.name}
+                      </Button>
+                    </Link>
+                  </IconButton>
+                  <IconButton
+                    className={clsx(classes.expand, {
+                      [classes.expandOpen]: expanded,
+                    })}
+                    onClick={handleExpandClick}
+                    aria-expanded={expanded}
+                    aria-label="show more"
+                  >
+                    <ExpandMoreIcon />
+                  </IconButton>
+                </CardActions>
+                <Collapse in={expanded} timeout="auto" unmountOnExit>
+                  <CardContent>
+                    <Typography paragraph>{article.author}</Typography>
+                    <Typography paragraph>{article.content}</Typography>
+                  </CardContent>
+                </Collapse>
+              </Card>
+              {/* </Paper> */}
+            </Grid>
+          ))
+        )}
+
+        {loadingTwo ? (
+          <></>
+        ) : (
+          searchData.map((article) => (
             <Grid item xs={12} sm={6}>
               {/* <Paper className={classes.paper}> */}
               <Card className={classes.root}>
