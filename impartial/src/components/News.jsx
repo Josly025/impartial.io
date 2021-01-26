@@ -16,6 +16,7 @@ import Grid from "@material-ui/core/Grid";
 import "../css/news.css";
 import Button from "@material-ui/core/Button";
 import Divider from "@material-ui/core/Divider";
+import Input from "@material-ui/core/Input";
 
 const useStyles = makeStyles((theme) => ({
   rootGrid: {
@@ -59,7 +60,12 @@ const News = () => {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+  ////search
+  const [loadingTwo, setLoadingTwo] = useState(true);
+  const [search, setSearch] = useState();
+  const [searchData, setSearchData] = useState();
 
+  ////Top News
   useEffect(() => {
     async function getNews() {
       const res = await Axios.get(
@@ -72,6 +78,21 @@ const News = () => {
     getNews();
   }, []);
 
+  // //handle the input on change
+
+  // useEffect(() => {
+  //   async function searchNews() {
+  //     console.log(search);
+  //     const res = await Axios.get(
+  //       `https://newsapi.org/v2/everything?q=${search}&apiKey=6512f11dc59b448c87ce0e727960f3c9`
+  //     );
+  //     setSearchData(res.data.articles);
+  //     console.log(searchData);
+  //     setLoadingTwo(false);
+  //   }
+  //   searchNews();
+  // }, []);
+
   return (
     <>
       <Grid
@@ -83,6 +104,11 @@ const News = () => {
         alignContent="stretch"
         spacing={4}
       >
+        <Grid item xs={12}>
+          <Input defaultValue="Search By Topic" className="input" />
+          <Button variant="outlined">Search</Button>
+        </Grid>
+
         {loading ? (
           <h1>Loading</h1>
         ) : (
