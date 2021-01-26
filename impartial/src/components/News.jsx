@@ -8,24 +8,26 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import Collapse from "@material-ui/core/Collapse";
-import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import { red } from "@material-ui/core/colors";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import "../css/news.css";
+import Button from "@material-ui/core/Button";
+
 // import Paper from "@material-ui/core/Paper";
 // Start of NEWS
 
 const useStyles = makeStyles((theme) => ({
+  rootGrid: {
+    marginLeft: "5rem",
+    flexGrow: 1,
+  },
   root: {
-    float: "left",
-    maxWidth: 400,
-    maxHeight: 300,
-    marginBottom: 10,
+    maxWidth: 500,
+    maxHeight: 700,
     flexGrow: 1,
     padding: theme.spacing(1),
     textAlign: "center",
@@ -35,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
     height: 300,
     width: 500,
   },
-
   expand: {
     transform: "rotate(0deg)",
     marginLeft: "auto",
@@ -71,83 +72,82 @@ const News = () => {
       setLoading(false);
     }
     getNews();
-  }, []);
+  });
 
   return (
     <>
-      {console.log(news)}
-      {loading ? (
-        <h1>Loading</h1>
-      ) : (
-        news.map((article) => (
-          <>
-            <div className={classes.root}>
-              <Grid
-                className="grid"
-                container
-                direction="row"
-                justify="center"
-                alignItems="center"
-              >
-                <Grid item xs class="div-1">
-                  {/* <Paper className={classes.paper}> */}
-                  <Card className={classes.root}>
-                    <CardHeader
-                      title={article.title}
-                      subheader={new Date(article.publishedAt).toLocaleString()}
-                    />
-                    <CardMedia
-                      className={classes.media}
-                      //image src
-                      image={article.urlToImage}
-                    />
-                    <CardContent>
-                      <Typography
-                        className="card-content"
-                        variant="body2"
-                        color="textSecondary"
-                        component="p"
-                      >
-                        {article.description}
-                      </Typography>
-                    </CardContent>
-                    <CardActions disableSpacing>
-                      <IconButton aria-label="share">
-                        <Link
-                          component="button"
-                          variant="body2"
-                          to={article.url}
-                        >
-                          {article.source.name}
-                        </Link>
-                      </IconButton>
-                      <IconButton
-                        className={clsx(classes.expand, {
-                          [classes.expandOpen]: expanded,
-                        })}
-                        onClick={handleExpandClick}
-                        aria-expanded={expanded}
-                        aria-label="show more"
-                      >
-                        <ExpandMoreIcon />
-                      </IconButton>
-                    </CardActions>
-                    <Collapse in={expanded} timeout="auto" unmountOnExit>
-                      <CardContent>
-                        <Typography paragraph>{article.title}</Typography>
-                        <Typography paragraph>{article.author}</Typography>
-                        <Typography paragraph>{article.content}</Typography>
-                      </CardContent>
-                    </Collapse>
-                  </Card>
-                  {/* </Paper> */}
-                </Grid>
-              </Grid>
-            </div>
-            {/* start of card */}
-          </>
-        ))
-      )}
+      <Grid
+        className={classes.rootGrid}
+        justify="center"
+        alignItems="center"
+        container
+        direction="row"
+        alignContent="stretch"
+        spacing={4}
+      >
+        {loading ? (
+          <h1>Loading</h1>
+        ) : (
+          news.map((article) => (
+            <Grid item xs={12} sm={6}>
+              {/* <Paper className={classes.paper}> */}
+              <Card className={classes.root}>
+                <CardHeader
+                  title={article.title}
+                  subheader={new Date(article.publishedAt).toLocaleString()}
+                />
+                <CardMedia
+                  className={classes.media}
+                  //image src
+                  image={article.urlToImage}
+                />
+                <CardContent>
+                  <Typography
+                    className="card-content"
+                    variant="body2"
+                    color="textPrimary"
+                    component="p"
+                  >
+                    {article.description}
+                  </Typography>
+                </CardContent>
+                <CardActions disableSpacing>
+                  <IconButton aria-label="share">
+                    <Link
+                      component="button"
+                      variant="body2"
+                      target="_blank"
+                      to={article.url}
+                    >
+                      <Button size="medium" variant="contained" color="primary">
+                        {article.source.name}
+                      </Button>
+                    </Link>
+                  </IconButton>
+                  <IconButton
+                    className={clsx(classes.expand, {
+                      [classes.expandOpen]: expanded,
+                    })}
+                    onClick={handleExpandClick}
+                    aria-expanded={expanded}
+                    aria-label="show more"
+                  >
+                    <ExpandMoreIcon />
+                  </IconButton>
+                </CardActions>
+                <Collapse in={expanded} timeout="auto" unmountOnExit>
+                  <CardContent>
+                    <Typography paragraph>{article.title}</Typography>
+                    <Typography paragraph>{article.author}</Typography>
+                    <Typography paragraph>{article.content}</Typography>
+                  </CardContent>
+                </Collapse>
+              </Card>
+              {/* </Paper> */}
+            </Grid>
+          ))
+        )}
+      </Grid>
     </>
   );
 };
