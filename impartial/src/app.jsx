@@ -1,10 +1,10 @@
 import React from "react";
 import News from "./components/News";
-
+import Header from "./components/Header";
 const App = () => {
   return (
     <>
-      <p>Make a Header</p>
+      <Header />
       <News />
     </>
   );

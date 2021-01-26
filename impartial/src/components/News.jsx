@@ -15,17 +15,27 @@ import { red } from "@material-ui/core/colors";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Link from "@material-ui/core/Link";
-
+import Grid from "@material-ui/core/Grid";
+import "../css/news.css";
+// import Paper from "@material-ui/core/Paper";
 // Start of NEWS
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 345,
+    float: "left",
+    maxWidth: 400,
+    maxHeight: 300,
+    marginBottom: 10,
+    flexGrow: 1,
+    padding: theme.spacing(1),
+    textAlign: "center",
+    color: theme.palette.text.primary,
   },
   media: {
-    height: 0,
-    paddingTop: "56.25%", // 16:9
+    height: 300,
+    width: 500,
   },
+
   expand: {
     transform: "rotate(0deg)",
     marginLeft: "auto",
@@ -71,56 +81,70 @@ const News = () => {
       ) : (
         news.map((article) => (
           <>
-            <Card className={classes.root}>
-              <CardHeader
-                avatar={
-                  <Avatar aria-label="recipe" className={classes.avatar}>
-                    R
-                  </Avatar>
-                }
-                action={
-                  <IconButton aria-label="settings">
-                    <MoreVertIcon />
-                  </IconButton>
-                }
-                title={article.title}
-                subheader={article.publishedAt}
-              />
-              <CardMedia
-                className={classes.media}
-                //image src
-                image={article.urlToImage}
-              />
-              <CardContent>
-                <Typography variant="body2" color="textSecondary" component="p">
-                  {article.description}
-                </Typography>
-              </CardContent>
-              <CardActions disableSpacing>
-                <IconButton aria-label="share">
-                  <Link component="button" variant="body2" to={article.url}>
-                    {article.source.name}
-                  </Link>
-                </IconButton>
-                <IconButton
-                  className={clsx(classes.expand, {
-                    [classes.expandOpen]: expanded,
-                  })}
-                  onClick={handleExpandClick}
-                  aria-expanded={expanded}
-                  aria-label="show more"
-                >
-                  <ExpandMoreIcon />
-                </IconButton>
-              </CardActions>
-              <Collapse in={expanded} timeout="auto" unmountOnExit>
-                <CardContent>
-                  <Typography paragraph>{article.title}</Typography>
-                  <Typography paragraph>{article.author}</Typography>
-                  <Typography paragraph>{article.content}</Typography>
-                </CardContent>
-              </Collapse>
-            </Card>
+            <div className={classes.root}>
+              <Grid
+                className="grid"
+                container
+                direction="row"
+                justify="center"
+                alignItems="center"
+              >
+                <Grid item xs class="div-1">
+                  {/* <Paper className={classes.paper}> */}
+                  <Card className={classes.root}>
+                    <CardHeader
+                      title={article.title}
+                      subheader={new Date(article.publishedAt).toLocaleString()}
+                    />
+                    <CardMedia
+                      className={classes.media}
+                      //image src
+                      image={article.urlToImage}
+                    />
+                    <CardContent>
+                      <Typography
+                        className="card-content"
+                        variant="body2"
+                        color="textSecondary"
+                        component="p"
+                      >
+                        {article.description}
+                      </Typography>
+                    </CardContent>
+                    <CardActions disableSpacing>
+                      <IconButton aria-label="share">
+                        <Link
+                          component="button"
+                          variant="body2"
+                          to={article.url}
+                        >
+                          {article.source.name}
+                        </Link>
+                      </IconButton>
+                      <IconButton
+                        className={clsx(classes.expand, {
+                          [classes.expandOpen]: expanded,
+                        })}
+                        onClick={handleExpandClick}
+                        aria-expanded={expanded}
+                        aria-label="show more"
+                      >
+                        <ExpandMoreIcon />
+                      </IconButton>
+                    </CardActions>
+                    <Collapse in={expanded} timeout="auto" unmountOnExit>
+                      <CardContent>
+                        <Typography paragraph>{article.title}</Typography>
+                        <Typography paragraph>{article.author}</Typography>
+                        <Typography paragraph>{article.content}</Typography>
+                      </CardContent>
+                    </Collapse>
+                  </Card>
+                  {/* </Paper> */}
+                </Grid>
+              </Grid>
+            </div>
+            {/* start of card */}
           </>
         ))
       )}
