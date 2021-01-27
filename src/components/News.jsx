@@ -125,7 +125,7 @@ const News = () => {
             Search
           </Button>
           <Typography className={classes.subTitle} gutterBottom>
-            | Multiple Sources For The Best Way To Stay Informed |
+            | Articles Courtesy of the New York Times |
           </Typography>
         </Grid>
 
@@ -143,7 +143,7 @@ const News = () => {
                 <CardMedia
                   className={classes.media}
                   //image src
-                  image={article.multimedia[3].url}
+                  image={article.multimedia[2].url}
                 />
                 <CardContent>
                   <Typography

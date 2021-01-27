@@ -53,10 +53,10 @@ const Header = () => {
             color="inherit"
             className={classes.menuButton}
           >
-            Impartial
+            Trending Times
           </Typography>
           <Typography className={classes.title} gutterBottom>
-            The U.S. News Source Providing A Reliable Form of Media
+            The U.S. News Source Providing A Reliable Form Of Media
           </Typography>
         </Toolbar>
       </AppBar>
