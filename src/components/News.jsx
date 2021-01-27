@@ -72,14 +72,15 @@ const News = () => {
   const [loadingTwo, setLoadingTwo] = useState(true);
   const [search, setSearch] = useState();
   const [searchData, setSearchData] = useState();
+  //http://api.mediastack.com/v1/news?access_key=e7661c8be9b44978349eca2ac24e2e1e&countries=us&languages=en
 
-  ////Top News
   useEffect(() => {
     async function getNews() {
       const res = await Axios.get(
-        `https://newsapi.org/v2/top-headlines?country=us&apiKey=6512f11dc59b448c87ce0e727960f3c9`
+        `https://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=3U4bhB5mL3M3foeQ8G4TT3ok5NNBZ8I8`
       );
-      setNews(res.data.articles);
+      console.log(res.data.results);
+      setNews(res.data.results);
       console.log(news);
       setLoading(false);
     }
@@ -92,10 +93,10 @@ const News = () => {
     async function searchNews() {
       console.log(search);
       const res = await Axios.get(
-        `https://newsapi.org/v2/everything?q=${search}&apiKey=6512f11dc59b448c87ce0e727960f3c9`
+        `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${search}&api-key=3U4bhB5mL3M3foeQ8G4TT3ok5NNBZ8I8`
       );
-      setSearchData(res.data.articles);
-      console.log(searchData);
+      setSearchData(res.data.response.docs);
+      console.log(res.data.response.docs);
       setLoadingTwo(false);
       setLoading(true);
     }
@@ -135,14 +136,14 @@ const News = () => {
             <Grid item xs={12} sm={6}>
               {/* <Paper className={classes.paper}> */}
               <Card className={classes.root}>
+                <CardHeader title={article.title} subheader={article.section} />
                 <CardHeader
-                  title={article.title}
-                  subheader={new Date(article.publishedAt).toLocaleString()}
+                  subheader={new Date(article.published_date).toLocaleString()}
                 />
                 <CardMedia
                   className={classes.media}
                   //image src
-                  image={article.urlToImage}
+                  image={article.multimedia[3].url}
                 />
                 <CardContent>
                   <Typography
@@ -151,7 +152,7 @@ const News = () => {
                     color="textPrimary"
                     component="p"
                   >
-                    {article.description}
+                    {article.abstract}
                   </Typography>
                 </CardContent>
                 <CardActions disableSpacing>
@@ -160,7 +161,7 @@ const News = () => {
                     href={article.url}
                     className={classes.btn}
                   >
-                    {article.source.name}
+                    {article.source}
                   </Button>
 
                   {/* <IconButton
@@ -176,7 +177,7 @@ const News = () => {
                 </CardActions>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                   <CardContent>
-                    <Typography paragraph>{article.content}</Typography>
+                    <Typography paragraph>{article.abstract}</Typography>
                     <Typography paragraph></Typography>
                   </CardContent>
                 </Collapse>
@@ -194,13 +195,18 @@ const News = () => {
               {/* <Paper className={classes.paper}> */}
               <Card className={classes.root}>
                 <CardHeader
-                  title={article.title}
-                  subheader={new Date(article.publishedAt).toLocaleString()}
+                  title={article.headline.main}
+                  subheader={article.section_name}
+                />
+                <CardHeader
+                  subheader={new Date(article.pub_date).toLocaleString()}
                 />
                 <CardMedia
                   className={classes.media}
                   //image src
-                  image={article.urlToImage}
+                  image={
+                    `https://static01.nyt.com/` + article.multimedia[3].url
+                  }
                 />
                 <CardContent>
                   <Typography
@@ -209,7 +215,7 @@ const News = () => {
                     color="textPrimary"
                     component="p"
                   >
-                    {article.description}
+                    {article.abstract}
                   </Typography>
                 </CardContent>
                 <CardActions disableSpacing>
@@ -217,12 +223,12 @@ const News = () => {
                     <Link component="button" variant="body2">
                       <Button
                         size="medium"
-                        href={article.url}
+                        href={article.web_url}
                         variant="contained"
                         className={classes.btn}
                       >
                         <Divider />
-                        {article.source.name}
+                        {article.source}
                       </Button>
                     </Link>
                   </IconButton>
