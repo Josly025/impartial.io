@@ -49,8 +49,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#ff9800",
   },
   subTitle: {
-    marginRight: "11rem",
-    marginTop: ".4rem",
+    textAlgin: "center",
+    marginRight: "6rem",
+    // marginTop: ".4rem",
     fontSize: "1.2rem",
     color: "#ff9800",
     float: "right",
