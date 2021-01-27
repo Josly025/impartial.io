@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "1.2rem",
     color: "#ff9800",
   },
+
   toolbar: {
     minHeight: "6rem",
     alignItems: "flex-start",
@@ -54,9 +55,8 @@ const Header = () => {
           >
             Impartial
           </Typography>
-          <Typography className={classes.title} color="textWhite" gutterBottom>
-            The U.S. News Source Providing a Reliable Form of Media By Using
-            Mulitple Sources
+          <Typography className={classes.title} gutterBottom>
+            The U.S. News Source Providing A Reliable Form of Media
           </Typography>
         </Toolbar>
       </AppBar>

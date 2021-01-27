@@ -46,8 +46,15 @@ const useStyles = makeStyles((theme) => ({
     transform: "rotate(180deg)",
   },
   btn: {
-    color: "blacks",
     backgroundColor: "#ff9800",
+  },
+  subTitle: {
+    marginRight: "11rem",
+    marginTop: ".4rem",
+    fontSize: "1.2rem",
+    color: "#ff9800",
+    float: "right",
+    textTransform: "italize",
   },
 }));
 
@@ -115,6 +122,9 @@ const News = () => {
           <Button variant="outlined" type="submit" onClick={handleSearch}>
             Search
           </Button>
+          <Typography className={classes.subTitle} gutterBottom>
+            | Multiple Sources For The Best Way To Stay Informed |
+          </Typography>
         </Grid>
 
         {loading ? (
@@ -145,7 +155,11 @@ const News = () => {
                 </CardContent>
                 <CardActions disableSpacing>
                   <IconButton aria-label="share">
-                    <Link component="button" variant="body2">
+                    <Link
+                      className="class.btnNew"
+                      component="button"
+                      variant="body2"
+                    >
                       <Button
                         size="medium"
                         href={article.url}
@@ -157,7 +171,7 @@ const News = () => {
                       </Button>
                     </Link>
                   </IconButton>
-                  <IconButton
+                  {/* <IconButton
                     className={clsx(classes.expand, {
                       [classes.expandOpen]: expanded,
                     })}
@@ -165,12 +179,11 @@ const News = () => {
                     aria-expanded={expanded}
                     aria-label="show more"
                   >
-                    <ExpandMoreIcon />
-                  </IconButton>
+                    <Typography paragraph>{article.author}</Typography>
+                  </IconButton> */}
                 </CardActions>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                   <CardContent>
-                    <Typography paragraph>{article.author}</Typography>
                     <Typography paragraph>{article.content}</Typography>
                     <Typography paragraph></Typography>
                   </CardContent>
