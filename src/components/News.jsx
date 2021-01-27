@@ -78,6 +78,8 @@ const News = () => {
     async function getNews() {
       const res = await Axios.get(
         `https://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=3U4bhB5mL3M3foeQ8G4TT3ok5NNBZ8I8`
+        // `https://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=3U4bhB5mL3M3foeQ8G4TT3ok5NNBZ8I8`
+        // `https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=3U4bhB5mL3M3foeQ8G4TT3ok5NNBZ8I8`
       );
       console.log(res.data.results);
       setNews(res.data.results);
@@ -142,7 +144,7 @@ const News = () => {
                 <CardMedia
                   className={classes.media}
                   //image src
-                  // image={article.multimedia[0].url}
+                  image={article.multimedia[3].url}
                 />
                 <CardContent>
                   <Typography
