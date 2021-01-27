@@ -20,7 +20,7 @@ import Input from "@material-ui/core/Input";
 
 const useStyles = makeStyles((theme) => ({
   rootGrid: {
-    marginLeft: "5rem",
+    marginLeft: "1rem",
     flexGrow: 1,
   },
   root: {
