@@ -144,7 +144,7 @@ const News = () => {
                 <CardMedia
                   className={classes.media}
                   //image src
-                  image={article.multimedia[3].url}
+                  image={article.multimedia[2].url}
                 />
                 <CardContent>
                   <Typography
