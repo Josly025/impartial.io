@@ -28,6 +28,14 @@ input {
   color: #fff !important;
 }
 
+*::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+
+  color: #fff !important;
+  opacity: 1.4; /* Firefox */
+  text-transform: uppercase;
+}
+
 .MuiInput-underline:hover:not(.Mui-disabled):before {
   border-bottom: 1px solid #ff9800 !important;
   border-bottom-color: #ff9800 !important;

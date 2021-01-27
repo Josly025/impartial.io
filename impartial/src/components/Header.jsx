@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "flex-start",
     paddingTop: theme.spacing(1),
     paddingBottom: theme.spacing(2),
+    border: ".2rem #ff9800",
   },
 }));
 

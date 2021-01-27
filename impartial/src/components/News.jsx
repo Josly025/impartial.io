@@ -172,6 +172,7 @@ const News = () => {
                   <CardContent>
                     <Typography paragraph>{article.author}</Typography>
                     <Typography paragraph>{article.content}</Typography>
+                    <Typography paragraph></Typography>
                   </CardContent>
                 </Collapse>
               </Card>

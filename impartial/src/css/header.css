@@ -1,5 +1,6 @@
 header {
   background: #123850; /* fallback for old browsers */
+  background: no-repeat;
   background: -webkit-linear-gradient(
     to right,
     #123850,
