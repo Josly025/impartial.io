@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
   subTitle: {
     textAlgin: "center",
     marginRight: "6rem",
-    // marginTop: ".4rem",
+    marginTop: "-2rem",
     fontSize: "1.2rem",
     color: "#ff9800",
     float: "right",
@@ -81,12 +81,11 @@ const News = () => {
       );
       console.log(res.data.results);
       setNews(res.data.results);
-      console.log(news);
       setLoading(false);
     }
     getNews();
   }, []);
-
+  console.log(news);
   // //handle the input on change
   function handleSearch() {
     searchNews();
@@ -143,7 +142,7 @@ const News = () => {
                 <CardMedia
                   className={classes.media}
                   //image src
-                  image={article.multimedia[2].url}
+                  // image={article.multimedia[0].url}
                 />
                 <CardContent>
                   <Typography
