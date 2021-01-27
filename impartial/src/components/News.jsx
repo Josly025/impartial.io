@@ -154,23 +154,14 @@ const News = () => {
                   </Typography>
                 </CardContent>
                 <CardActions disableSpacing>
-                  <IconButton aria-label="share">
-                    <Link
-                      className="class.btnNew"
-                      component="button"
-                      variant="body2"
-                    >
-                      <Button
-                        size="medium"
-                        href={article.url}
-                        variant="contained"
-                        className={classes.btn}
-                      >
-                        <Divider />
-                        {article.source.name}
-                      </Button>
-                    </Link>
-                  </IconButton>
+                  <Button
+                    size="medium"
+                    href={article.url}
+                    className={classes.btn}
+                  >
+                    {article.source.name}
+                  </Button>
+
                   {/* <IconButton
                     className={clsx(classes.expand, {
                       [classes.expandOpen]: expanded,
