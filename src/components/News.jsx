@@ -77,17 +77,17 @@ const News = () => {
   useEffect(() => {
     async function getNews() {
       const res = await Axios.get(
-        `https://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=3U4bhB5mL3M3foeQ8G4TT3ok5NNBZ8I8`
-        // `https://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=3U4bhB5mL3M3foeQ8G4TT3ok5NNBZ8I8`
-        // `https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=3U4bhB5mL3M3foeQ8G4TT3ok5NNBZ8I8`
+        `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=politics&api-key=3U4bhB5mL3M3foeQ8G4TT3ok5NNBZ8I8`
       );
-      console.log(res.data.results);
-      setNews(res.data.results);
+      // `https://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=3U4bhB5mL3M3foeQ8G4TT3ok5NNBZ8I8`
+      // `https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=3U4bhB5mL3M3foeQ8G4TT3ok5NNBZ8I8`
+      console.log(res.data.response.docs);
+      setNews(res.data.response.docs);
       setLoading(false);
     }
     getNews();
   }, []);
-  console.log(news);
+
   // //handle the input on change
   function handleSearch() {
     searchNews();
@@ -137,14 +137,21 @@ const News = () => {
             <Grid item xs={12} sm={6}>
               {/* <Paper className={classes.paper}> */}
               <Card className={classes.root}>
-                <CardHeader title={article.title} subheader={article.section} />
                 <CardHeader
-                  subheader={new Date(article.published_date).toLocaleString()}
+                  title={article.headline.main}
+                  subheader={article.section_name}
                 />
+                <CardHeader
+                  subheader={new Date(article.pub_date).toLocaleString()}
+                />
+
                 <CardMedia
                   className={classes.media}
                   //image src
-                  image={article.multimedia[2].url}
+                  image={
+                    `https://static01.nyt.com/` + article.multimedia[3].url
+                  }
+                  // image={article.thumbnail_standard}
                 />
                 <CardContent>
                   <Typography
@@ -159,7 +166,7 @@ const News = () => {
                 <CardActions disableSpacing>
                   <Button
                     size="medium"
-                    href={article.url}
+                    href={article.web_url}
                     className={classes.btn}
                   >
                     {article.source}
