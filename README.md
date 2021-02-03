@@ -1,70 +1,78 @@
-# Getting Started with Create React App
+### Title \*\*\*\*
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+** Trending Times **
 
-## Available Scripts
+![Trending_Times](./images_2/trending_times.png)
 
-In the project directory, you can run:
+## Description \*\*\*
 
-### `npm start`
+Trending Times is an application that allows users
+to stay updated on current events via the latest
+New York Times articles. An image and short description
+allow a user to get the gist of an article before deciding
+whether or not to view the whole article through the link
+button.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Blockers: It is important to describe the problems
+I had with several news API's during this project.
+The original goal of this project with to illustrate news from
+mulitple sources to make a non-bias form of media. In fact,
+the original name for this site was called "Impartial".
+The API's I used required large amounts of monthly payment
+for a deployed app; therefore, I had to improvise and use the
+NY Times free API.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Note: If You know of a better, free, API with great data please
+email me at grantjoslyn@gmail.com. I was really hoping to have
+this app pull data from multiple sources.
 
-### `npm test`
+## Table of Contents \*\*\*\*
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [Installation Instructions](##Installation_Instructions)
+- [Usage Information](##Usage_Information)
+- [Contribution Guidlines](##Contribution_Guidlines)
+- [License](##License)
+- [Project Links](##Project_Links)
 
-### `npm run build`
+## Installation_Instructions \*\*\*
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+     npm i
+     npm run start
+     npm run build
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Usage_Information \*\*\*
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+     A user can scroll throguh the latest articles
+     or use the search input to view articles
+     based on a specific topic
 
-### `npm run eject`
+## Credits
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+     - Material UI
+     - NY Times API
+     - Google Fonts
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Contribution_Guidlines \*\*\*
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+     Feel free to fork the repo and
+     make make a pull request to my branch.
+     I would love to collaborate!
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Questions
 
-## Learn More
+- If you have any questions, feel free to reach out to me by email.
+  grantjoslyn@gmail.com
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### GitHub Username \*\*\*
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    Josly025
 
-### Code Splitting
+## License \*\*\*
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+    ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)(https://opensource.org/licenses/MIT)
 
-### Analyzing the Bundle Size
+## Project_Links \*\*\*
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+[GitHub Repo](https://github.com/Josly025/impartial.io.git)
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[Deployed Link](https://compassionate-leavitt-8ad7b2.netlify.app/)
